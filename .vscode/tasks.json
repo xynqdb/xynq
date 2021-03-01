@@ -1,0 +1,90 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "XynqBuild Mac",
+            "type": "shell",
+            "command": "${workspaceRoot}/build/build_macOS.sh",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "XynqDB[Docker/Linux][Release]",
+            "type": "shell",
+            "command": "${workspaceRoot}/build/build_with_docker.sh",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "XynqDB[Docker/Linux][Debug]",
+            "type": "shell",
+            "command": "${workspaceRoot}/build/build_with_docker.sh Debug",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Run Tests Docker/Linux",
+            "type": "shell",
+            "command": "${workspaceRoot}/build/run_with_docker.sh",
+            "args": [
+                "xynq_tests"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Clean All",
+            "type": "shell",
+            "command": "${workspaceRoot}/build/clean_all.sh",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        }
+    ]
+}
