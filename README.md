@@ -82,15 +82,38 @@ Sample code below connects to the storage and creates object of type Car at posi
 ```
 
 ## Query objects
-The following code queries all objects within bounding sphere with the center at (0, 0, 0) and radius 25.
+The following code queries all objects within bounding sphere with the center at (0, 0, 0) and radius 250.
 ```lisp
 % nc 127.0.0.1 9920
 (select Car
-        (within 0 0 0 25))
+        (within 0 0 0 250))
 [
     {_guid:"f985ebd5-8172-49eb-9ff3-f5a8d98102de", "x":0, "y":25.1200000000000009947598, "z":12.25},
     {_guid:"b55cd452-be3f-4d81-8422-b2814867ef22", "x":1, "y":1, "z":1},
     {_guid:"846ad738-6cb1-4845-a64e-ff1860298641", "x":0, "y":0, "z":0}
 ]
 ```
+
+## State update feeds
+To subscribe to updates of all objects in some area of interest:
+```lisp
+(subscribe Car
+           (within 0 0 0 250)
+           60)
+;
+; This will switch your stream into replica mode
+; and will receive all changes within bounding sphere origin (0, 0, 0) and radius 250
+; Will send updates at most at 60 updates per second rate.
+;
+[{_guid:"f985ebd5-8172-49eb-9ff3-f5a8d98102de", "x":0, "y":25, "z":1}]
+[{_guid:"f985ebd5-8172-49eb-9ff3-f5a8d98102de", "x":0, "y":15, "z":1}]
+[{_guid:"f985ebd5-8172-49eb-9ff3-f5a8d98102de", "x":0, "y":5, "z":1}]
+[{_guid:"f985ebd5-8172-49eb-9ff3-f5a8d98102de", "x":0, "y":-5, "z":1}]
+```
+
+## Access control
+TODO
+
+## Object authority
+TODO
 
